@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Globalization;
 using TerceiroAplicativo;
 
@@ -8,6 +9,36 @@ namespace TerceiroProjeto
     {
         // C# - POO: Classes, atributos, métodos e membros estáticos
         static void Main(string[] args)
+        {
+            
+        }
+        static void CalcOldest()
+        {
+            Oldest p1, p2;
+
+            p1 = new Oldest();
+            p2 = new Oldest();
+
+            Console.WriteLine("Qual o nome da primeira pessoa?");
+            p1.nome = Console.ReadLine();
+            Console.WriteLine($"Quantos anos {p1.nome} tem?");
+            p1.idade = int.Parse(Console.ReadLine());
+
+            Console.WriteLine("E como se chama a segunda pessoa?");
+            p2.nome = Console.ReadLine();
+            Console.WriteLine($"E quantos anos {p2.nome} teria?");
+            p2.idade = int.Parse(Console.ReadLine());
+
+            if (p1.idade > p2.idade)
+            {
+                Console.WriteLine($"{p1.nome} é mais velho(a) que {p2.nome}.");
+            }
+            else
+            {
+                Console.WriteLine($"{p2.nome} é mais velho(a) que {p1.nome}.");
+            }
+        }
+        static void CalcTrianTutorClass()
         {
             Triangulo x, y;
             x = new Triangulo();
@@ -31,7 +62,7 @@ namespace TerceiroProjeto
 
             if (areaX > areaY)
             {
-                Console.WriteLine("A maior área entre o triângulo X ({0}) e o triângulo ({1}) é a do triângulo X",areaX, areaY);
+                Console.WriteLine("A maior área entre o triângulo X ({0}) e o triângulo ({1}) é a do triângulo X", areaX, areaY);
             }
             else
             {
