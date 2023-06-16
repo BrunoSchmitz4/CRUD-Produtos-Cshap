@@ -19,9 +19,7 @@ namespace TerceiroAplicativo
             Console.Clear();
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Produto: " + nome +
-                "\nPreço por unidade: R$" + preco +
-                "\nQuantidade em estoque: " + quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque()); ;
+            Console.WriteLine("Dados do produto:\n{0}", ToString());
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("-----------------------------------------------");
         }
@@ -31,6 +29,7 @@ namespace TerceiroAplicativo
             Console.WriteLine("Quantas unidades serão adicionadas?");
             int quantidadeAdicional = int.Parse(Console.ReadLine());
             quantidade = quantidade + quantidadeAdicional;
+            Console.Clear();
             Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {nome}.");
             Console.WriteLine("A quantidade total em estoque é: " + quantidade);
         }
@@ -40,17 +39,12 @@ namespace TerceiroAplicativo
             Console.WriteLine($"Quantas unidades das {quantidade} desejas remover?");
             int quantidadeRemovida = int.Parse(Console.ReadLine());
             quantidade = quantidade - quantidadeRemovida;
+            Console.Clear();
             Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {nome}.");
         }
 
         public void AtualizarProdutos()
         {
-            //Console.WriteLine($"Dentre os dados do produto, escolha o que será atualizado:");
-            //Console.WriteLine("-----------------------------------------------");
-            //Console.WriteLine("-----------------------------------------------");
-            //Console.WriteLine("(P) - Produto: " + nome + "\n(PU) - Preço por unidade: R$" + preco);
-            //Console.WriteLine("-----------------------------------------------");
-            //Console.WriteLine("-----------------------------------------------");
             string opcao = "";
             opcao.ToUpper();
             while ((opcao != "P") || (opcao != "PU") || (opcao != "S"))
@@ -68,11 +62,13 @@ namespace TerceiroAplicativo
                 {
                     Console.WriteLine("Insira o novo nome do produto: ");
                     nome = Console.ReadLine();
+                    Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
                 }else if ((opcao == "PU") || (opcao == "pu"))
                 {
                     Console.WriteLine("Insira o novo preço do produto: ");
                     preco = int.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
                 }else if ((opcao == "S") || (opcao == "s"))
                 {
@@ -81,6 +77,12 @@ namespace TerceiroAplicativo
                     break;
                 }
             }
+        }
+        public override string ToString()
+        {
+            return "Produto: " + nome +
+                "\nPreço por unidade: R$" + preco +
+                "\nQuantidade em estoque: " + quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque();
         }
     }
 }

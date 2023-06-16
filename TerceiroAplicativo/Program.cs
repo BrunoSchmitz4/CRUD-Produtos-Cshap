@@ -23,7 +23,7 @@ namespace TerceiroProjeto
             string opcao = "";
             while ((opcao != "add") || (opcao != "del") || (opcao != "stt") || (opcao != "att") || (opcao != "s"))
             {
-                Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nAdicionar produtos(add)\nDeletar produtos(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
+                Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nAdicionar unidade(s)(add)\nDeletar unidade(s)(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
                 opcao = Console.ReadLine();
                 if (opcao == "add")
                 {
