@@ -10,7 +10,52 @@ namespace TerceiroProjeto
         // C# - POO: Classes, atributos, métodos e membros estáticos
         static void Main(string[] args)
         {
-            CalcTrianTutorClass();
+
+            Produtos computador, celular;
+
+            computador = new Produtos();
+            computador.quantidade = 0;
+            computador.preco = 5000.0f;
+            computador.nome = "Acer";
+            celular = new Produtos();
+
+            //Console.WriteLine("O que deseja fazer?Opções:\nAdicionar produtos(ap)\nDeletar produtos(dp)\nStatus Produtos(sp)\nSair(s)");
+            string opcao = "";
+            while ((opcao != "add") || (opcao != "del") || (opcao != "stt") || (opcao != "att") || (opcao != "s"))
+            {
+                Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nAdicionar produtos(add)\nDeletar produtos(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
+                opcao = Console.ReadLine();
+                if (opcao == "add")
+                {
+                    Console.Clear();
+                    computador.AdicionarProdutos(computador.quantidade);
+                    Console.WriteLine("Quantidade Adicionada!");
+                }else if (opcao == "del")
+                {
+                    Console.Clear();
+                    computador.RemoverProdutos(computador.quantidade);
+                    Console.WriteLine("Quantidade removida!");
+                    if(computador.quantidade < 0)
+                    {
+                        computador.quantidade = 0;
+                    }
+                }else if (opcao == "stt")
+                {
+                    Console.Clear();
+                    computador.DadosProdutos();
+                }else if (opcao == "att")
+                {
+                    Console.Clear();
+                    computador.AtualizarProdutos();
+                    Console.WriteLine("Produto atualizado com sucesso!");
+                }
+                else if (opcao == "s")
+                {
+                    Console.Clear();
+                    Console.WriteLine("Programa encerrado");
+                    break;
+                }
+            }
         }
         static void CalcOldest()
         {
@@ -98,6 +143,7 @@ namespace TerceiroProjeto
                 Console.WriteLine("Maior área: Y");
             }
         }
+        
         // Função que faz o Cálculo dos Triângulos sem uso de POO (Versão própria)
         static void CalcTrian()
         {
