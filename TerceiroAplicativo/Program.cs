@@ -11,51 +11,68 @@ namespace TerceiroProjeto
         static void Main(string[] args)
         {
 
-            Produtos computador, celular;
-
-            computador = new Produtos();
-            computador.quantidade = 0;
-            computador.preco = 5000.0f;
-            computador.nome = "Acer";
-            celular = new Produtos();
-
             //Console.WriteLine("O que deseja fazer?Opções:\nAdicionar produtos(ap)\nDeletar produtos(dp)\nStatus Produtos(sp)\nSair(s)");
             string opcao = "";
-            while ((opcao != "add") || (opcao != "del") || (opcao != "stt") || (opcao != "att") || (opcao != "s"))
+            
+            string nome = null;
+            int quantidade = 0;
+            double preco = 0.0f;
+
+            while ((nome == null) && (preco <= 0))
             {
-                Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nAdicionar unidade(s)(add)\nDeletar unidade(s)(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
-                opcao = Console.ReadLine();
-                if (opcao == "add")
+                Console.WriteLine("Insira os dados iniciais do produto abaixo: ");
+                Console.WriteLine("Insira o nome: ");
+                nome = Console.ReadLine();
+                Console.WriteLine("Insira o preço: ");
+                preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                Console.WriteLine("Insira a quantidade: ");
+                quantidade = int.Parse(Console.ReadLine());
+                Console.Clear();
+                Produtos computador = new Produtos(nome, preco, quantidade);
+                while ((opcao != "new") || (opcao != "add") || (opcao != "del") || (opcao != "stt") || (opcao != "att") || (opcao != "s"))
                 {
-                    Console.Clear();
-                    computador.AdicionarProdutos(computador.quantidade);
-                    Console.WriteLine("Quantidade Adicionada!");
-                }else if (opcao == "del")
-                {
-                    Console.Clear();
-                    computador.RemoverProdutos(computador.quantidade);
-                    Console.WriteLine("Quantidade removida!");
-                    if(computador.quantidade < 0)
+                    Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nAdicionar unidade(s)(add)\nDeletar unidade(s)(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
+                    opcao = Console.ReadLine();
+                    if (opcao == "new")
                     {
-                        computador.quantidade = 0;
+
                     }
-                }else if (opcao == "stt")
-                {
-                    Console.Clear();
-                    computador.DadosProdutos();
-                }else if (opcao == "att")
-                {
-                    Console.Clear();
-                    computador.AtualizarProdutos();
-                    Console.WriteLine("Produto atualizado com sucesso!");
-                }
-                else if (opcao == "s")
-                {
-                    Console.Clear();
-                    Console.WriteLine("Programa encerrado");
-                    break;
+                    if (opcao == "add")
+                    {
+                        Console.Clear();
+                        computador.AdicionarProdutos(computador.quantidade);
+                        Console.WriteLine("Quantidade Adicionada!");
+                    }
+                    else if (opcao == "del")
+                    {
+                        Console.Clear();
+                        computador.RemoverProdutos(computador.quantidade);
+                        Console.WriteLine("Quantidade removida!");
+                        if (computador.quantidade < 0)
+                        {
+                            computador.quantidade = 0;
+                        }
+                    }
+                    else if (opcao == "stt")
+                    {
+                        Console.Clear();
+                        computador.DadosProdutos();
+                    }
+                    else if (opcao == "att")
+                    {
+                        Console.Clear();
+                        computador.AtualizarProdutos();
+                        Console.WriteLine("Produto atualizado com sucesso!");
+                    }
+                    else if (opcao == "s")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("Programa encerrado");
+                        break;
+                    }
                 }
             }
+            
         }
         static void CalcOldest()
         {

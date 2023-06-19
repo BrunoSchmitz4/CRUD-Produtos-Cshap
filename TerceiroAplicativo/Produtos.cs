@@ -8,6 +8,14 @@ namespace TerceiroAplicativo
         public string nome;
         public double preco;
         public int quantidade;
+
+        public Produtos(string nome, double preco, int quantidade)
+        {
+            this.nome = nome;
+            this.preco = preco;
+            this.quantidade = quantidade;
+        }
+
         public double ValorTotalEmEstoque()
         {
             //Console.WriteLine($"Existe(m) {quantidade} unidade(s) em estoque deste produto.");
@@ -20,6 +28,7 @@ namespace TerceiroAplicativo
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("Dados do produto:\n{0}", ToString());
+            CalculaDolar();
             Console.WriteLine("-----------------------------------------------");
             Console.WriteLine("-----------------------------------------------");
         }
@@ -51,11 +60,9 @@ namespace TerceiroAplicativo
             {
                 Console.Clear();
                 Console.WriteLine($"Dentre os dados do produto, escolha o que será atualizado:");
-                Console.WriteLine("-----------------------------------------------");
-                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine("-----------------------------------------------\n-----------------------------------------------");
                 Console.WriteLine("(P) - Produto: " + nome + "\n(PU) - Preço por unidade: R$" + preco + "\n(S) - Sair da aba de atualizar");
-                Console.WriteLine("-----------------------------------------------");
-                Console.WriteLine("-----------------------------------------------");
+                Console.WriteLine("-----------------------------------------------\n-----------------------------------------------");
                 opcao = Console.ReadLine();
                 opcao.ToUpper();
                 if ((opcao == "P") || (opcao == "p"))
@@ -67,7 +74,7 @@ namespace TerceiroAplicativo
                 }else if ((opcao == "PU") || (opcao == "pu"))
                 {
                     Console.WriteLine("Insira o novo preço do produto: ");
-                    preco = int.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
                     Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
                 }else if ((opcao == "S") || (opcao == "s"))
@@ -83,6 +90,12 @@ namespace TerceiroAplicativo
             return "Produto: " + nome +
                 "\nPreço por unidade: R$" + preco +
                 "\nQuantidade em estoque: " + quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque();
+        }
+
+        public void CalculaDolar(double cotacaoAtual = 5.0f)
+        {
+            double dolar = (quantidade * preco) / cotacaoAtual;
+            Console.WriteLine("O valor de estoque em dolar ficará: ${0}", dolar);
         }
     }
 }
