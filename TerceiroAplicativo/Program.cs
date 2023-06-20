@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Globalization;
 using TerceiroAplicativo;
 
@@ -18,13 +17,13 @@ namespace TerceiroProjeto
             int quantidade = 0;
             double preco = 0.0f;
 
-            while ((nome == null) && (preco <= 0))
+            while (((nome == null) || (nome.Length <= 1)) && (preco <= 0))
             {
                 Console.WriteLine("Insira os dados iniciais do produto abaixo: ");
                 Console.WriteLine("Insira o nome: ");
                 nome = Console.ReadLine();
                 Console.WriteLine("Insira o preço: ");
-                preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                preco = double.Parse(Console.ReadLine());
                 Console.WriteLine("Insira a quantidade: ");
                 quantidade = int.Parse(Console.ReadLine());
                 Console.Clear();
@@ -40,17 +39,17 @@ namespace TerceiroProjeto
                     if (opcao == "add")
                     {
                         Console.Clear();
-                        computador.AdicionarProdutos(computador.quantidade);
+                        computador.AdicionarProdutos(computador.GetQuantidade());
                         Console.WriteLine("Quantidade Adicionada!");
                     }
                     else if (opcao == "del")
                     {
                         Console.Clear();
-                        computador.RemoverProdutos(computador.quantidade);
+                        computador.RemoverProdutos(computador.GetQuantidade());
                         Console.WriteLine("Quantidade removida!");
-                        if (computador.quantidade < 0)
+                        if (computador.GetQuantidade() < 0)
                         {
-                            computador.quantidade = 0;
+                            computador.SetQuantidade(0);
                         }
                     }
                     else if (opcao == "stt")
@@ -72,7 +71,6 @@ namespace TerceiroProjeto
                     }
                 }
             }
-            
         }
         static void CalcOldest()
         {
