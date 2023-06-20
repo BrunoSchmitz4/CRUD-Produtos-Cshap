@@ -10,7 +10,6 @@ namespace TerceiroProjeto
         static void Main(string[] args)
         {
 
-            //Console.WriteLine("O que deseja fazer?Opções:\nAdicionar produtos(ap)\nDeletar produtos(dp)\nStatus Produtos(sp)\nSair(s)");
             string opcao = "";
             
             string nome = null;
@@ -40,17 +39,17 @@ namespace TerceiroProjeto
                     if (opcao == "add")
                     {
                         Console.Clear();
-                        computador.AdicionarProdutos(computador.GetQuantidade());
+                        computador.AdicionarProdutos(computador.Quantidade);
                         Console.WriteLine("Quantidade Adicionada!");
                     }
                     else if (opcao == "del")
                     {
                         Console.Clear();
-                        computador.RemoverProdutos(computador.GetQuantidade());
+                        computador.RemoverProdutos(computador.Quantidade);
                         Console.WriteLine("Quantidade removida!");
-                        if (computador.GetQuantidade() < 0)
+                        if (computador.Quantidade < 0)
                         {
-                            computador.SetQuantidade(0);
+                            computador.Quantidade = 0;
                         }
                     }
                     else if (opcao == "stt")
