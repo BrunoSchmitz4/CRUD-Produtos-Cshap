@@ -25,41 +25,57 @@ namespace TerceiroAplicativo
             this._quantidade = quantidade;
         }
 
-        public string GetNome()
-        {
-            return _nome;
-        }
-        private void SetNome(string nome)
-        {
-            _nome = nome;
-        }
 
-        public double GetPreco()
+        public string Nome
         {
-            return _preco;
+            get { return _nome; }
+            set { _nome = value; }
         }
+        //public string GetNome()
+        //{
+        //    return _nome;
+        //}
+        //private void SetNome(string nome)
+        //{
+        //    _nome = nome;
+        //}
 
-        private double SetPreco(double preco)
+        public double Preco
         {
-            return _preco = preco;
+            get { return _preco; }
+            set { _preco = value; }
         }
+        //public double GetPreco()
+        //{
+        //    return _preco;
+        //}
 
-        public int GetQuantidade()
-        {
-            return _quantidade;
-        }
+        //private double SetPreco(double preco)
+        //{
+        //    return _preco = preco;
+        //}
 
-        public void SetQuantidade(int quantidade)
+        public int Quantidade
         {
-            _quantidade = quantidade;
+            get { return _quantidade; }
+            set { _quantidade = value; }
         }
+        //public int GetQuantidade()
+        //{
+        //    return _quantidade;
+        //}
+
+        //public void SetQuantidade(int quantidade)
+        //{
+        //    _quantidade = quantidade;
+        //}
 
         public double ValorTotalEmEstoque()
         {
             //Console.WriteLine($"Existe(m) {quantidade} unidade(s) em estoque deste produto.");
-            Console.WriteLine($"Existe(m) {GetQuantidade()} unidade(s) em estoque deste produto.");
+            Console.WriteLine($"Existe(m) {Quantidade} unidade(s) em estoque deste produto.");
             //return (preco * quantidade);
-            return (GetPreco() * GetQuantidade());
+            return (Preco * Quantidade);
         }
 
         public void DadosProdutos()
@@ -78,26 +94,26 @@ namespace TerceiroAplicativo
             Console.WriteLine("Quantas unidades serão adicionadas?");
             int quantidadeAdicional = int.Parse(Console.ReadLine());
             //quantidade = quantidade + quantidadeAdicional;
-            int NovaQuantidade = GetQuantidade() + quantidadeAdicional;
-            SetQuantidade(NovaQuantidade);
+            Quantidade = Quantidade + quantidadeAdicional;
+            //SetQuantidade(NovaQuantidade);
             Console.Clear();
             //Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {nome}.");
-            Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {GetNome()}.");
+            Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {Nome}.");
             //Console.WriteLine("A quantidade total em estoque é: " + quantidade);
-            Console.WriteLine("A quantidade total em estoque é: " + GetQuantidade());
+            Console.WriteLine("A quantidade total em estoque é: " + Quantidade);
         }
         public void RemoverProdutos(int quantity)
         {
             Console.Clear();
             //Console.WriteLine($"Quantas unidades das {quantidade} desejas remover?");
-            Console.WriteLine($"Quantas unidades das {GetQuantidade()} desejas remover?");
+            Console.WriteLine($"Quantas unidades das {Quantidade} desejas remover?");
             int quantidadeRemovida = int.Parse(Console.ReadLine());
             //quantidade = quantidade - quantidadeRemovida;
-            int NovaQuantidade = GetQuantidade() - quantidadeRemovida;
-            SetQuantidade(NovaQuantidade);
+            Quantidade = Quantidade - quantidadeRemovida;
+            //SetQuantidade(NovaQuantidade);
             Console.Clear();
             //Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {nome}.");
-            Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {GetNome()}.");
+            Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {Nome}.");
         }
 
         public void AtualizarProdutos()
@@ -110,7 +126,7 @@ namespace TerceiroAplicativo
                 Console.WriteLine($"Dentre os dados do produto, escolha o que será atualizado:");
                 Console.WriteLine("-----------------------------------------------\n-----------------------------------------------");
                 //Console.WriteLine("(P) - Produto: " + nome + "\n(PU) - Preço por unidade: R$" + preco + "\n(S) - Sair da aba de atualizar");
-                Console.WriteLine("(P) - Produto: " + GetNome() + "\n(PU) - Preço por unidade: R$" + GetPreco() + "\n(S) - Sair da aba de atualizar");
+                Console.WriteLine("(P) - Produto: " + Nome + "\n(PU) - Preço por unidade: R$" + Preco + "\n(S) - Sair da aba de atualizar");
                 Console.WriteLine("-----------------------------------------------\n-----------------------------------------------");
                 opcao = Console.ReadLine();
                 opcao.ToUpper();
@@ -118,8 +134,9 @@ namespace TerceiroAplicativo
                 {
                     Console.WriteLine("Insira o novo nome do produto: ");
                     //nome = Console.ReadLine();
-                    string NovoNome = Console.ReadLine();
-                    SetNome(NovoNome);
+                    Nome = Console.ReadLine();
+                    //SetNome(NovoNome);
+                    //Nome = NovoNome;
                     Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
 
@@ -127,8 +144,8 @@ namespace TerceiroAplicativo
                 {
                     Console.WriteLine("Insira o novo preço do produto: ");
                     //preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                    double NovoPreco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                    SetPreco(NovoPreco);
+                    Preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    //SetPreco(NovoPreco);
                     Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
                 }else if ((opcao == "S") || (opcao == "s"))
@@ -144,16 +161,16 @@ namespace TerceiroAplicativo
             //return "Produto: " + nome +
             //"\nPreço por unidade: R$" + preco +
             //"\nQuantidade em estoque: " + quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque();
-            return "Produto: " + GetNome() +
-                "\nPreço por unidade: R$" + GetPreco() +
-                "\nQuantidade em estoque: " + GetQuantidade() + "\nValor de estoque: R$" + ValorTotalEmEstoque();
+            return "Produto: " + Nome +
+                "\nPreço por unidade: R$" + Preco +
+                "\nQuantidade em estoque: " + Quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque();
         }
 
         public void CalculaDolar(double cotacaoAtual = 5.0f)
         {
             //double dolar = (quantidade * preco) / cotacaoAtual;
             //double dolar = (_quantidade * _preco) / cotacaoAtual;
-            double dolar = (GetQuantidade() * GetPreco()) / cotacaoAtual;
+            double dolar = (Quantidade * Preco) / cotacaoAtual;
             Console.WriteLine("O valor de estoque em dolar ficará: ${0}", dolar);
         }
     }
