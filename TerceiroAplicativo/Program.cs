@@ -30,11 +30,12 @@ namespace TerceiroProjeto
                 Produtos computador = new Produtos(nome, preco, quantidade);
                 while ((opcao != "new") || (opcao != "add") || (opcao != "del") || (opcao != "stt") || (opcao != "att") || (opcao != "s"))
                 {
-                    Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nAdicionar unidade(s)(add)\nDeletar unidade(s)(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
+                    Console.WriteLine("\n\n\n\nO que deseja fazer?Opções:\nCriar unidade(new)\nAdicionar unidade(s)(add)\nDeletar unidade(s)(del)\nAtualizar produtos(att)\nStatus Produtos(stt)\nSair(s)");
                     opcao = Console.ReadLine();
                     if (opcao == "new")
                     {
-
+                        Console.Clear();
+                        Console.WriteLine("Opção ainda em construção :)");
                     }
                     if (opcao == "add")
                     {

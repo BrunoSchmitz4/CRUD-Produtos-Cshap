@@ -29,7 +29,6 @@ namespace TerceiroAplicativo
         {
             return _nome;
         }
-
         private void SetNome(string nome)
         {
             _nome = nome;
@@ -44,6 +43,7 @@ namespace TerceiroAplicativo
         {
             return _preco = preco;
         }
+
         public int GetQuantidade()
         {
             return _quantidade;
@@ -78,10 +78,11 @@ namespace TerceiroAplicativo
             Console.WriteLine("Quantas unidades serão adicionadas?");
             int quantidadeAdicional = int.Parse(Console.ReadLine());
             //quantidade = quantidade + quantidadeAdicional;
-            _quantidade = _quantidade + quantidadeAdicional;
+            int NovaQuantidade = GetQuantidade() + quantidadeAdicional;
+            SetQuantidade(NovaQuantidade);
             Console.Clear();
             //Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {nome}.");
-            Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {_nome}.");
+            Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {GetNome()}.");
             //Console.WriteLine("A quantidade total em estoque é: " + quantidade);
             Console.WriteLine("A quantidade total em estoque é: " + GetQuantidade());
         }
@@ -92,10 +93,11 @@ namespace TerceiroAplicativo
             Console.WriteLine($"Quantas unidades das {GetQuantidade()} desejas remover?");
             int quantidadeRemovida = int.Parse(Console.ReadLine());
             //quantidade = quantidade - quantidadeRemovida;
-            _quantidade = _quantidade - quantidadeRemovida;
+            int NovaQuantidade = GetQuantidade() - quantidadeRemovida;
+            SetQuantidade(NovaQuantidade);
             Console.Clear();
             //Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {nome}.");
-            Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {_nome}.");
+            Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {GetNome()}.");
         }
 
         public void AtualizarProdutos()
@@ -116,14 +118,17 @@ namespace TerceiroAplicativo
                 {
                     Console.WriteLine("Insira o novo nome do produto: ");
                     //nome = Console.ReadLine();
-                    _nome = Console.ReadLine();
+                    string NovoNome = Console.ReadLine();
+                    SetNome(NovoNome);
                     Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
+
                 }else if ((opcao == "PU") || (opcao == "pu"))
                 {
                     Console.WriteLine("Insira o novo preço do produto: ");
                     //preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-                    _preco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    double NovoPreco = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                    SetPreco(NovoPreco);
                     Console.WriteLine("Dados do produto atualizados:\n{0}", ToString());
                     opcao = "";
                 }else if ((opcao == "S") || (opcao == "s"))
