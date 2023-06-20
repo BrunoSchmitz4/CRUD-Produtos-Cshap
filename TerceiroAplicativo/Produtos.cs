@@ -14,6 +14,7 @@ namespace TerceiroAplicativo
             this.Nome = nome;
             this.Preco = preco;
             this.Quantidade = quantidade;
+            if (Quantidade <= 0) { Quantidade = 0; }
         }
 
         public double ValorTotalEmEstoque()
@@ -25,12 +26,9 @@ namespace TerceiroAplicativo
         public void DadosProdutos()
         {
             Console.Clear();
-            Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("Dados do produto:\n{0}", ToString());
+            Console.WriteLine("-----------------------------------------------\n-----------------------------------------------" + "\nDados do produto:\n" + ToString());
             CalculaDolar();
-            Console.WriteLine("-----------------------------------------------");
-            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("\n-----------------------------------------------\n-----------------------------------------------");
         }
         public void AdicionarProdutos(int quantity)
         {
@@ -39,8 +37,8 @@ namespace TerceiroAplicativo
             int quantidadeAdicional = int.Parse(Console.ReadLine());
             Quantidade = Quantidade + quantidadeAdicional;
             Console.Clear();
-            Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {Nome}.");
-            Console.WriteLine("A quantidade total em estoque é: " + Quantidade);
+            Console.WriteLine($"Foram adicionados {quantidadeAdicional} no estoque de {Nome}.\nA quantidade total em estoque é: " + Quantidade);
+            //Console.WriteLine("A quantidade total em estoque é: " + Quantidade);
         }
         public void RemoverProdutos(int quantity)
         {
@@ -48,8 +46,12 @@ namespace TerceiroAplicativo
             Console.WriteLine($"Quantas unidades das {Quantidade} desejas remover?");
             int quantidadeRemovida = int.Parse(Console.ReadLine());
             Quantidade = Quantidade - quantidadeRemovida;
+            if (Quantidade <= 0)
+            {
+                Quantidade = 0;
+            }
             Console.Clear();
-            Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {Nome}.");
+            Console.WriteLine($"Foram removidos {quantidadeRemovida} do estoque de {Nome}.\nA quantidade total em estoque é: " + Quantidade);
         }
 
         public void AtualizarProdutos()
@@ -59,10 +61,10 @@ namespace TerceiroAplicativo
             while ((opcao != "P") || (opcao != "PU") || (opcao != "S"))
             {
                 Console.Clear();
-                Console.WriteLine($"Dentre os dados do produto, escolha o que será atualizado:");
-                Console.WriteLine("-----------------------------------------------\n-----------------------------------------------");
-                Console.WriteLine("(P) - Produto: " + Nome + "\n(PU) - Preço por unidade: R$" + Preco + "\n(S) - Sair da aba de atualizar");
-                Console.WriteLine("-----------------------------------------------\n-----------------------------------------------");
+                Console.WriteLine($"Dentre os dados do produto, escolha o que será atualizado:" +
+                    $"\n-----------------------------------------------\n-----------------------------------------------" +
+                    $"\n(P) - Produto: " + Nome + "\n(PU) - Preço por unidade: R$" + Preco + "\n(S) - Sair da aba de atualizar" +
+                    "\n-----------------------------------------------\n-----------------------------------------------");
                 opcao = Console.ReadLine();
                 opcao.ToUpper();
                 if ((opcao == "P") || (opcao == "p"))
@@ -88,15 +90,11 @@ namespace TerceiroAplicativo
         }
         public override string ToString()
         {
-            return "Produto: " + Nome +
-                "\nPreço por unidade: R$" + Preco +
-                "\nQuantidade em estoque: " + Quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque();
+            return "Produto: " + Nome + "\nPreço por unidade: R$" + Preco + "\nQuantidade em estoque: " + Quantidade + "\nValor de estoque: R$" + ValorTotalEmEstoque();
         }
-
-        public void CalculaDolar(double cotacaoAtual = 5.0f)
+        public void CalculaDolar()
         {
-            double dolar = (Quantidade * Preco) / cotacaoAtual;
-            Console.WriteLine("O valor de estoque em dolar ficará: ${0}", dolar);
+            Console.WriteLine("O valor de estoque em dolar ficará: $" + ((Quantidade * Preco) / 5.0f));
         }
     }
 }
